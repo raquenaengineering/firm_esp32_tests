@@ -1,8 +1,10 @@
 #include <Arduino.h>
+#include <SPI.h>
+
 #include "scan_i2c/scan_i2c.h"
 #include "nonblocking_blink/nonblocking_blink.h"
 #include "sd_card_rw_spi/sd_card_rw_spi.h"
-#include <SPI.h>
+#include "rtc_set_read/rtc_set_read.h"
 
 // Safe GPIO pins to test
 int testPins[] = {13, 18};
@@ -24,6 +26,17 @@ void setup() {
   }
 
   Serial.println("GPIO test pins initialized");
+
+  // RTC STUFF // 
+
+
+  setupRTC();
+
+  // Set the RTC time once (e.g., May 6, 2026, 12:00:00)
+  // setRTCOnce(2026, 5, 6, 17, 7, 0);
+
+
+
 
   // IMPORTANT: Do NOT call SPI.end()
   // SD library needs SPI active
@@ -56,6 +69,9 @@ void loop() {
   // }
   // // -1 = skipped (too soon)
 
-  scanI2C(1000);
+  // Print RTC every 2 seconds (non-blocking)
+  printRTCNonBlocking(2000);
+  loopRTC();
+  // scanI2C(1000);
 
 }

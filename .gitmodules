@@ -1,0 +1,6 @@
+[submodule "firm_esp32_tests/lib/RTClib"]
+	path = firm_esp32_tests/lib/RTClib
+	url = https://github.com/adafruit/RTClib.git
+[submodule "firm_esp32_tests/lib/DS3231"]
+	path = firm_esp32_tests/lib/DS3231
+	url = https://github.com/NorthernWidget/DS3231.git
